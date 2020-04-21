@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.text.*;
 import java.io.Console;
@@ -42,12 +43,12 @@ class connection
 		
 		
 		System.out.println("Hey! Let's Create your account!!");
-		System.out.println("Enter your User Name");
+		System.out.println("\nEnter your User Name");
 		String name=sc.next();
 		
 		
 		System.out.println("enter your birth year");			//for storing the date of birth
-	    int y=sc.nextInt();
+	        int y=sc.nextInt();
 		System.out.println("enter your birth month");
 		int m=sc.nextInt();
 		System.out.println("enter your birth date");
@@ -65,29 +66,31 @@ class connection
 		    // TODO Auto-generated catch block
 		  System.out.println("invalid date of birth");
 		}
-		
-		System.out.println("Do you want to keep any staus?(y/n)");
-		char ch=sc.next().charAt(0);
-		String st="";
-		if(ch=='y'||ch=='Y')
-		{
-			System.out.println("Here are some common status for your help!");
-			System.out.println("");				//list to be appended
-			
-			System.out.println("Enter your status");
-			st=sc.next();
-		}
 		System.out.println("Enter your password");
+		String p=sc.next();
+		
+		//System.out.println("Do you want to keep any status?(y/n)");
+	//	char ch=sc.next().charAt(0);
+		String st=null;
+		//if(ch=='y'||ch=='Y')
+		{
+					st="Hey There! I am using Connect-Pal.";  //default status
+					
+			/*System.out.println("Enter your status");
+			st=sc.next();*/
+		}
+		
 		
 		//hidden password
 		//Console con = null;					
 		//con = System.console();   
 		//char[] p=new char[20];		
 		//char[] p=con.readPassword(); 
-		String p=sc.next();
+		
 		node temp=new node(name,date2,st,p);
 		if(head_count<30)
 		{
+			System.out.println("\nAccount created successfully");
 			head[head_count]=new node();
 			head[head_count]=temp;
 			head_count++;
@@ -102,7 +105,7 @@ class connection
 	
 	int login()
 	{
-		System.out.println("Enter your User Name");
+		System.out.println("\nEnter your User Name");
 		String name=sc.next();
 		
 		System.out.println("Enter your ID password");
@@ -115,7 +118,7 @@ class connection
 			//System.out.println(head[i].uname+" "+head[i].password);
 			if((head[i].uname.equals(name))&&(head[i].password.equals(pass)))
 			{
-				System.out.println(head[i].uname+" "+head[i].password);
+				//System.out.println(head[i].uname+" "+head[i].password);
 				
 				fl=1;
 				login_id=i;
@@ -129,10 +132,90 @@ class connection
 		}
 		else
 		{
-			System.out.println("SUCCESSFULLY LOGIN");
+			System.out.println("\n!!LOGIN SUCCESSFULL!!");
+			after_login(login_id);
 			return login_id;
 		}
+		
+		
+	}
+	
+	void after_login(int login_id)
+	{
+		int c;
+		System.out.println("\n\t\tYOUR PROFILE");
+		System.out.println("___________________________________");
+		System.out.println("\n\t\t "+head[login_id].uname+" ");
+		System.out.println("\nStatus: "+head[login_id].status);
+		System.out.println("\nDate Of Birth: "+head[login_id].dob);
+		System.out.println("\n____________________________________");
+		
+		//show the friends list who the user is following
+		
+		do
+		{
+			System.out.println("\n\n1.Search for Friends");
+			System.out.println("2.Update Status");
+			System.out.println("3.Find friends who have birthday in this month");
+			System.out.println("4.Exit");
+			System.out.println("Enter your choice ");
+			c=sc.nextInt();
 			
+			switch(c)
+			{
+				  case 1:make_friend(login_id);
+					     break;
+					     
+				  case 2:update_status(login_id);
+				         System.out.println("Status Updated to :"+head[login_id].status);
+					     break;
+					     
+				  case 3:
+					    break;
+					    
+				  case 4:
+					  break;
+				
+			}
+		}while(c!=4);
+		
+		
+	}
+	
+	void update_status(int login_id)
+	{
+		System.out.println("\nHere are some common status for your help!");
+		System.out.println("1.Available");
+		System.out.println("2.Busy");	
+		System.out.println("3.At work");	
+		System.out.println("4.Sleeping");	
+		System.out.println("5.Type your own status");
+		int ch=sc.nextInt();
+		
+		if(ch==1)
+		{
+			head[login_id].status="Available";
+		}
+		else if(ch==2)
+		{
+			head[login_id].status="Busy";
+		}
+		else if(ch==3)
+		{
+			head[login_id].status="At work";
+		}
+		else if(ch==4)
+		{
+			head[login_id].status="Sleeping";
+		}
+		else if(ch==5)
+		{
+		System.out.println("Enter your updated status");
+		head[login_id].status=sc.next();
+
+		}
+		
+		
 	}
 	
 	void display_list(int login_id)
@@ -148,6 +231,7 @@ class connection
 	
 	void make_friend(int login_id)
 	{
+		System.out.println("");
 		display_list(login_id);
 		System.out.println("Enter the friend name with whom you want to connect");
 		String name=sc.next();
@@ -193,15 +277,37 @@ public class friend_circle
 	
 	public static void main(String[] args)
 	{
-		
+		Scanner sc=new Scanner(System.in);
 		
 		connection obj=new connection();
-		obj.signup();
-		obj.signup();
-		int login_id=obj.login();
-		obj.make_friend(login_id);
+		
+		int choice;
+		
+		do
+		{
+			System.out.println("\n________________________");
+			System.out.println("\n\t1.Sign-Up\t\t");
+			System.out.println("\t2.Login   \t\t");
+			System.out.println("_________________________");
+			System.out.println("3.exit");
+			System.out.println("\nEnter your choice ");
+			System.out.println();
+			choice=sc.nextInt();
+			
+			switch(choice)
+			{
+			  case 1:obj.signup();
+				     break;
+				     
+			  case 2:int login_id=obj.login();
+				     break;
+				     
+			  case 3:
+				    break;
+			
+			}
+		}while(choice!=3);
+		
 		
 	}
 }
-
-

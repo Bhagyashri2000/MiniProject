@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.text.*;
 import java.io.Console;
@@ -140,25 +139,117 @@ class connection
 		
 	}
 	
-	void after_login(int login_id)
+	void displayProfile(int login_id)
 	{
-		int c;
-		System.out.println("\n\t\tYOUR PROFILE");
+		
 		System.out.println("___________________________________");
 		System.out.println("\n\t\t "+head[login_id].uname+" ");
 		System.out.println("\nStatus: "+head[login_id].status);
 		System.out.println("\nDate Of Birth: "+head[login_id].dob);
 		System.out.println("\n____________________________________");
+	}
+	
+	int searchPerson(String ser)
+	{
+		int i;
+		for(i=0;i<head_count;i++)
+		{
+			if(head[i].uname == ser)
+			{
+				return i;                         //returning the index of the required person
+			}
+		}
+	
+		return -1;                                //if not found we are return -1;
+	}
+	
+	boolean check_friend(int id,String fr_name)
+	{
+		node ptr;
+		ptr = head[id].next;
+		
+		while(ptr!=null)
+		{
+			if(ptr.uname==fr_name)
+			{
+				return true;
+			}
+			ptr = ptr.next;
+		}
+		
+		
+		return false;
+	}
+	
+	void unfriend(int id,String fr_name)
+	{
+		node ptr,prev;
+		prev = head[id];
+		ptr = head[id].next;
+		
+		while(ptr!=null)
+		{
+			if(ptr.uname==fr_name)
+			{
+				if(ptr.next==null)
+				{
+					prev.next=null;
+				}
+				else
+				{
+					prev.next = ptr.next;
+				}
+			}
+			prev = ptr;
+			ptr = ptr.next;
+		}
+	}
+	
+	int mutualFriends(int x,int y )
+	{
+		node ptr1,ptr2;
+		int compare,flag=0;
+		ptr1 = head[x].next;   //starting from a node just after the head as we don't need to compare the head
+		ptr2 = head[y].next;
+		
+		while(ptr1!=null && ptr2!=null)
+		{
+			compare = ptr1.uname.compareTo(ptr2.uname);
+			if(compare ==0)
+			{
+				System.out.println(ptr1.uname);           //if both reference are same then it is a mutual friend print it
+				ptr1 = ptr1.next;
+				ptr2 = ptr2.next;
+				flag = 1;
+			}
+			else if(compare<0)
+			{
+				ptr1 = ptr1.next;
+			}
+			else
+			{
+				ptr2 = ptr2.next;
+			}
+		}
+		return flag;
+	}
+	
+	void after_login(int login_id)
+	{
+		int c;
+		System.out.println("\n\t\tYOUR PROFILE");
+		displayProfile(login_id);
 		
 		//show the friends list who the user is following
 		
 		do
 		{
-			System.out.println("\n\n1.Search for Friends");
-			System.out.println("2.Update Status");
-			System.out.println("3.Find friends who have birthday in this month");
-			System.out.println("4.Exit");
-			System.out.println("Enter your choice ");
+			System.out.println("\n\n1.Add Friends");
+			System.out.println("2.Search a person");
+			System.out.println("3.Update Status");
+			System.out.println("4.Find friends who have birthday in this month");
+			System.out.println("5.Log-Out");
+			System.out.print("Enter your choice ");
 			c=sc.nextInt();
 			
 			switch(c)
@@ -166,18 +257,93 @@ class connection
 				  case 1:make_friend(login_id);
 					     break;
 					     
-				  case 2:update_status(login_id);
+				  case 2:
+				  {
+					  String name;
+					  int pal_id,flag;     //person ure searching's id
+					  boolean check_fr;
+					  System.out.print("Enter the username you want to search: ");
+					  name = sc.next();
+					  pal_id = searchPerson(name);
+					  if(pal_id==-1)
+					  {
+						  System.out.print("\nSorry! Thst username doesn't exist.");
+					  }
+					  else
+					  {
+						  displayProfile(pal_id);
+						  int ch=3;
+						  do
+						  {
+							  System.out.println("\n\nMenu: ");
+							  check_fr = check_friend(login_id,name);   //checking if they are friends or not
+							  if(check_fr == false)           //indicating that the person you searched from isn't your friend yet and hence no reference to it
+							  {
+								  System.out.println("1.Friend them");
+							  }
+							  else
+							  {
+								  System.out.println("1.Unfriend them");
+							  }
+							  System.out.println("2.Display Common Friends");
+							  System.out.println("3.Back to your profile");
+							  System.out.print("Enter your choice: ");
+							  ch = sc.nextInt();
+							  
+							  switch(ch)
+							  {
+								  case 1:
+								  {
+									  if(check_fr == false)           //indicating that the person you searched from isn't your friend yet and hence no reference to it
+									  {
+										  insert_sorted(login_id,pal_id);
+										  insert_sorted(pal_id,login_id);
+									  }
+									  else
+									  {
+										  unfriend(login_id, name);
+										  unfriend(pal_id,head[login_id].uname);
+									  }
+									  break;
+								  }
+								  
+								  case 2:
+								  {
+									  flag = mutualFriends(login_id,pal_id);
+									  if(flag == 0)
+									  {
+										  System.out.print("\nYou have no common pals!"); 
+									  }
+									  break;
+								  }
+								  case 3:
+								  {
+									  break;
+								  }
+								  default:
+								  {
+									  System.out.print("\nEnter a valid choice, between 1-3");
+								  }
+							  }
+							  
+						  }while(ch!=3);
+						  
+					  }
+					  break;
+				  
+				  }  
+				  case 3:update_status(login_id);
 				         System.out.println("Status Updated to :"+head[login_id].status);
 					     break;
 					     
-				  case 3:
+				  case 4:
 					    break;
 					    
-				  case 4:
+				  case 5:
 					  break;
 				
 			}
-		}while(c!=4);
+		}while(c!=5);
 		
 		
 	}
@@ -253,8 +419,8 @@ class connection
 		}
 		else
 		{
-			insert(login_id,friend_id);     //add edge u,v
-			insert(friend_id,login_id);     //add edge v,u
+			insert_sorted(login_id,friend_id);     //add edge u,v
+			insert_sorted(friend_id,login_id);     //add edge v,u
 		}
 		
 	}
@@ -269,6 +435,42 @@ class connection
 		}
 		ptr.next=new node(head[y].uname,head[y].dob,head[y].status,head[y].password);       //add y to end of list x
 		
+	}
+	
+	void insert_sorted(int x, int y)
+	{
+		node temp = new node(head[y].uname,head[y].dob,head[y].status,head[y].password);  //the new node to be added
+		node ptr,prev;
+		ptr = head[x].next;
+		prev = head[x];
+		
+		while(ptr.next!=null)
+		{
+			int comp = head[y].uname.compareTo(ptr.uname);
+			if(comp<0)                                  //then the to be inserted name is smaller than pointed node 
+			{
+				temp.next = ptr;
+				prev.next = temp;
+				break;    //break form the loop as the node has been added		
+			}
+			
+			prev = ptr;
+			ptr = ptr.next;
+		}
+		
+		if(temp.next == null)   //if the node has still not been assigned then check around the last node
+		{
+			int comp = head[y].uname.compareTo(ptr.uname);
+			if(comp<0)
+			{
+				temp.next = ptr;
+				prev.next = temp;
+			}
+			else
+			{
+				ptr.next = temp;
+			}
+		}
 	}
 }
 
@@ -289,7 +491,7 @@ public class friend_circle
 			System.out.println("\n\t1.Sign-Up\t\t");
 			System.out.println("\t2.Login   \t\t");
 			System.out.println("_________________________");
-			System.out.println("3.exit");
+			System.out.println("3.Close");
 			System.out.println("\nEnter your choice ");
 			System.out.println();
 			choice=sc.nextInt();

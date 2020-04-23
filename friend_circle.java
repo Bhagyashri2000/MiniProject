@@ -152,10 +152,13 @@ class connection
 	int searchPerson(String ser)
 	{
 		int i;
+		System.out.print("\n" +ser +"\n");
 		for(i=0;i<head_count;i++)
 		{
-			if(head[i].uname == ser)
+			int comp = ser.compareTo(head[i].uname);
+			if(comp==0)
 			{
+				System.out.print("\n" +i +"\n");
 				return i;                         //returning the index of the required person
 			}
 		}
@@ -170,7 +173,8 @@ class connection
 		
 		while(ptr!=null)
 		{
-			if(ptr.uname==fr_name)
+			int comp = fr_name.compareTo(ptr.uname);
+			if(comp==0)
 			{
 				return true;
 			}
@@ -189,7 +193,8 @@ class connection
 		
 		while(ptr!=null)
 		{
-			if(ptr.uname==fr_name)
+			int comp = fr_name.compareTo(ptr.uname);
+			if(comp==0)
 			{
 				if(ptr.next==null)
 				{
@@ -444,6 +449,15 @@ class connection
 		ptr = head[x].next;
 		prev = head[x];
 		
+		
+		
+		if(head[x].next==null)
+		{
+			head[x].next = temp;
+		}
+		
+		else
+		{
 		while(ptr.next!=null)
 		{
 			int comp = head[y].uname.compareTo(ptr.uname);
@@ -470,6 +484,7 @@ class connection
 			{
 				ptr.next = temp;
 			}
+		}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import java.util.*;
 import java.text.*;
-import java.io.Console;
+import java.time.*;
 
 class node
 {
@@ -8,7 +8,6 @@ class node
 	Date dob;
 	String status;
 	int friend_count;
-	//char[] password=new char[20];
 	String password;
 	node next;
 	
@@ -42,23 +41,38 @@ class connection
 		
 		
 		System.out.println("Hey! Let's Create your account!!");
-		System.out.println("\nEnter your User Name");
-		String name=sc.next();
+		int flag=0;			//validate name
+		String name="";
+		do
+		{
+			flag=0;
+			System.out.println("\nEnter your User Name");
+			name=sc.next();
+			if(check_name(name)==1)
+			{
+				System.out.println("The entered user name already exist!!Try to have some different user name");
+				flag=1;
+			}
+		}while(flag==1);
+		
 		
 		
 		System.out.println("enter your birth year");			//for storing the date of birth
-	        int y=sc.nextInt();
+	    int y=sc.nextInt();
 		System.out.println("enter your birth month");
 		int m=sc.nextInt();
 		System.out.println("enter your birth date");
 		int d=sc.nextInt();
 		String date1=Integer.toString(d)+"-"+Integer.toString(m)+"-"+Integer.toString(y);
 		
-		Date date2=null;
+		Date date2=new Date();
+		
 		try
 		{
-			date2=sdf.parse(date1);							//converting the format of string in Date
+			sdf.applyPattern("dd-MM-yyyy");
+			date2=sdf.parse(date1);	
 			
+//			
 		}
 		catch (ParseException e) 							
 		{
@@ -96,12 +110,23 @@ class connection
 		}
 		else
 		{
-			System.out.println("SORRYYY!! The limit of number of accounts is reached!!");
+			System.out.println("SORRYYY!! The limit of number of accounts in Connect_pal is full!!");
 		}
        
 		
 	}
 	
+	int check_name(String name)				//to check if duplicate name
+	{
+		for(int i=0;i<head_count;i++)
+		{
+			if(name.compareTo(head[i].uname)==0)
+			{
+				return 1;
+			}
+		}
+		return 0;
+	}
 	int login()
 	{
 		System.out.println("\nEnter your User Name");
@@ -114,10 +139,8 @@ class connection
 		int login_id=0;
 		for(int i=0;i<head_count;i++)
 		{
-			//System.out.println(head[i].uname+" "+head[i].password);
 			if((head[i].uname.equals(name))&&(head[i].password.equals(pass)))
 			{
-				//System.out.println(head[i].uname+" "+head[i].password);
 				
 				fl=1;
 				login_id=i;
@@ -132,6 +155,15 @@ class connection
 		else
 		{
 			System.out.println("\n!!LOGIN SUCCESSFULL!!");
+			
+			SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM");
+			
+			Date currentdate=java.util.Calendar.getInstance().getTime();  //take current date
+			if(sdf1.format(currentdate).compareTo(sdf1.format(head[login_id].dob))==0)
+			{
+				
+				System.out.println("Connect_pal wishes you very happy and healthy birthday!!");
+			}
 			after_login(login_id);
 			return login_id;
 		}
@@ -141,24 +173,26 @@ class connection
 	
 	void displayProfile(int login_id)
 	{
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		String date3=null;
 		
+		date3=sdf.format(head[login_id].dob);
 		System.out.println("___________________________________");
 		System.out.println("\n\t\t "+head[login_id].uname+" ");
 		System.out.println("\nStatus: "+head[login_id].status);
-		System.out.println("\nDate Of Birth: "+head[login_id].dob);
+		
+		System.out.println("\nDate Of Birth: "+date3);
 		System.out.println("\n____________________________________");
 	}
 	
-	int searchPerson(String ser)
+	int searchPerson(String ser)			//TO find a random person on Connect_pal
 	{
 		int i;
-		System.out.print("\n" +ser +"\n");
 		for(i=0;i<head_count;i++)
 		{
 			int comp = ser.compareTo(head[i].uname);
 			if(comp==0)
 			{
-				System.out.print("\n" +i +"\n");
 				return i;                         //returning the index of the required person
 			}
 		}
@@ -253,7 +287,8 @@ class connection
 			System.out.println("2.Search a person");
 			System.out.println("3.Update Status");
 			System.out.println("4.Find friends who have birthday in this month");
-			System.out.println("5.Log-Out");
+			System.out.println("5.News Feed");
+			System.out.println("6.Log-Out");
 			System.out.print("Enter your choice ");
 			c=sc.nextInt();
 			
@@ -341,18 +376,65 @@ class connection
 				         System.out.println("Status Updated to :"+head[login_id].status);
 					     break;
 					     
-				  case 4:
+				  case 4:find_birthday(login_id);
 					    break;
+					   
+				  case 5: news_feed(login_id);
+					  break;
 					    
-				  case 5:
+				  case 6:
 					  break;
 				
 			}
-		}while(c!=5);
+		}while(c!=6);
 		
 		
 	}
 	
+	
+	void news_feed(int login_id)
+	{
+		node ptr=head[login_id].next;
+		while(ptr!=null)
+		{
+			System.out.println(ptr.uname+" has updated::");
+			System.out.println(ptr.status);
+			ptr=ptr.next;
+		}
+	}
+	
+	void find_birthday(int login_id)
+	{
+		Date currentdate=java.util.Calendar.getInstance().getTime();  //take current date
+		
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("MM");		//we need month only
+		SimpleDateFormat sdf2=new SimpleDateFormat("dd");
+		String b_month1=null;									//friend's bday month
+		String b_month2=null;									//current bday month
+		b_month2=sdf.format(currentdate);
+		String b_date1=sdf2.format(currentdate);
+		String b_date2=null;
+		int today_date=Integer.parseInt(b_date1);
+		
+		
+		
+		
+		node ptr=head[login_id].next;
+		while(ptr!=null)
+		{
+			b_month1=sdf.format(ptr.dob);
+			b_date2=sdf2.format(ptr.dob);
+			int frnd_b_date=Integer.parseInt(b_date2);
+			if(b_month1.equals(b_month2)&&today_date<=frnd_b_date)
+			{
+				SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM-yyyy");
+				String friend_bday=sdf1.format(ptr.dob);
+				System.out.println(ptr.uname + "  is having birthday in this month at "+friend_bday);
+			}
+			ptr=ptr.next;
+		}
+	}
 	void update_status(int login_id)
 	{
 		System.out.println("\nHere are some common status for your help!");
@@ -393,7 +475,7 @@ class connection
 	{
 		for(int i=0;i<head_count;i++)
 		{
-			if(i!=login_id)
+			if(i!=login_id&&check_friend(login_id,head[i].uname)==false)
 			{
 				System.out.println(head[i].uname);
 			}
@@ -424,8 +506,12 @@ class connection
 		}
 		else
 		{
+			
+//			insert(login_id,friend_id);     //add edge u,v
+//			insert(friend_id,login_id);     //add edge v,u
 			insert_sorted(login_id,friend_id);     //add edge u,v
 			insert_sorted(friend_id,login_id);     //add edge v,u
+			System.out.println("you are successfully connected to "+head[friend_id].uname);
 		}
 		
 	}
@@ -458,33 +544,33 @@ class connection
 		
 		else
 		{
-		while(ptr.next!=null)
-		{
-			int comp = head[y].uname.compareTo(ptr.uname);
-			if(comp<0)                                  //then the to be inserted name is smaller than pointed node 
+			while(ptr.next!=null)
 			{
-				temp.next = ptr;
-				prev.next = temp;
-				break;    //break form the loop as the node has been added		
+				int comp = head[y].uname.compareTo(ptr.uname);
+				if(comp<0)                                  //then the to be inserted name is smaller than pointed node 
+				{
+					temp.next = ptr;
+					prev.next = temp;
+					break;    //break form the loop as the node has been added		
+				}
+				
+				prev = ptr;
+				ptr = ptr.next;
 			}
 			
-			prev = ptr;
-			ptr = ptr.next;
-		}
-		
-		if(temp.next == null)   //if the node has still not been assigned then check around the last node
-		{
-			int comp = head[y].uname.compareTo(ptr.uname);
-			if(comp<0)
+			if(temp.next == null)   //if the node has still not been assigned then check around the last node
 			{
-				temp.next = ptr;
-				prev.next = temp;
+				int comp = head[y].uname.compareTo(ptr.uname);
+				if(comp<0)
+				{
+					temp.next = ptr;
+					prev.next = temp;
+				}
+				else
+				{
+					ptr.next = temp;
+				}
 			}
-			else
-			{
-				ptr.next = temp;
-			}
-		}
 		}
 	}
 }

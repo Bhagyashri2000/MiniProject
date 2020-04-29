@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 package MiniProject;
 import java.util.*;                             //importing the required packages
 import java.text.*;                                
+=======
+import java.util.*;
+import java.text.*;
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 import java.time.*;
 
 class node                                   //node class, used to create node for each individual 
@@ -39,7 +44,11 @@ class connection
 	
 	void signup()
 	{
+<<<<<<< HEAD
 		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");            //setting the format of the date, for birth dates
+=======
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		
 		System.out.println("\nHey! Let's Create your account!!");
 		int flag=0;			//validate name
@@ -49,7 +58,11 @@ class connection
 			flag=0;
 			System.out.println("\nEnter your User Name ");
 			name=sc.nextLine();
+<<<<<<< HEAD
 			if(check_name(name)==1)                                    //validating if that username already exists or not
+=======
+			if(check_name(name)==1)
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 			{
 				System.out.println("The entered user name already exist!!Try to have some different user name");
 				flag=1;
@@ -66,7 +79,11 @@ class connection
 		String date1=Integer.toString(d)+"-"+Integer.toString(m)+"-"+Integer.toString(y);
 		Date date2=new Date();
 		
+<<<<<<< HEAD
 		try                                                     //validating if the entered date is proper or not
+=======
+		try
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		{
 			sdf.applyPattern("dd-MM-yyyy");
 			date2=sdf.parse(date1);		
@@ -81,7 +98,11 @@ class connection
 		
 		String st=null;
 		{
+<<<<<<< HEAD
 		st="Hey There! I am using Connect-Pal.";  				//default status
+=======
+			st="Hey There! I am using Connect-Pal.";  //default status
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 					
 		}
 		
@@ -89,8 +110,13 @@ class connection
 		if(head_count<30)
 		{
 			System.out.println("\n!!Account created successfully!!");
+<<<<<<< HEAD
 			head[head_count]=new node();                                     //creating a new node in the table
 			head[head_count]=temp;                                           //inserting the node
+=======
+			head[head_count]=new node();
+			head[head_count]=temp;
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 			head_count++;
 		}
 		else
@@ -98,10 +124,26 @@ class connection
 			System.out.println("SORRYYY!! The limit of number of accounts in Connect_pal is full!!");
 		}
     
+<<<<<<< HEAD
+=======
+	}
+	
+	int check_name(String name)				//to check if duplicate name
+	{
+		for(int i=0;i<head_count;i++)
+		{
+			if(name.compareTo(head[i].uname)==0)
+			{
+				return 1;
+			}
+		}
+		return 0;
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 	}
 	
 	int check_name(String name)						//to check if duplicate name
 	{
+<<<<<<< HEAD
 		for(int i=0;i<head_count;i++)
 		{
 			if(name.compareTo(head[i].uname)==0)
@@ -114,6 +156,8 @@ class connection
 	
 	int login()                                        //login method, to check if the username and password match and then continuing with further operations
 	{
+=======
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		System.out.println("\nEnter your User Name ");
 		String name=sc.nextLine();
 		
@@ -125,7 +169,11 @@ class connection
 		int login_id=0;
 		for(int i=0;i<head_count;i++)
 		{
+<<<<<<< HEAD
 			if((head[i].uname.equals(name))&&(head[i].password.equals(pass)))                //if both the username and password match then login else not
+=======
+			if((head[i].uname.equals(name))&&(head[i].password.equals(pass)))
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 			{
 				
 				fl=1;
@@ -144,8 +192,13 @@ class connection
 			
 			SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM");
 			
+<<<<<<< HEAD
 			Date currentdate=java.util.Calendar.getInstance().getTime();  					//take current date
 			if(sdf1.format(currentdate).compareTo(sdf1.format(head[login_id].dob))==0)          //if the current date of login matches users bday then wish
+=======
+			Date currentdate=java.util.Calendar.getInstance().getTime();  //take current date
+			if(sdf1.format(currentdate).compareTo(sdf1.format(head[login_id].dob))==0)
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 			{
 				
 				System.out.println("\n\n!!Connect_pal wishes you very happy and healthy birthday!!");
@@ -163,7 +216,11 @@ class connection
 		int c;
 		System.out.println("\n\t\tYOUR PROFILE");                 //displays your profile 
 		displayProfile(login_id);
+<<<<<<< HEAD
 		news_feed(login_id); 
+=======
+		news_feed(login_id);
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		
 		//show the friends list who the user is following
 		
@@ -305,7 +362,11 @@ class connection
 		return -1;                                //if not found we are return -1;
 	}
 	
+<<<<<<< HEAD
 	boolean check_friend(int id,String fr_name)                 //to check if give users are friends or not
+=======
+	boolean check_friend(int id,String fr_name)
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 	{
 		node ptr;
 		ptr = head[id].next;
@@ -324,10 +385,17 @@ class connection
 		return false;
 	}
 	
+<<<<<<< HEAD
 	void unfriend(int id,String fr_name)                              //method to unfriend the mentioned users ,no need to check if they are friends or not, prevous checked
 	{
 		node ptr,prev;                                                //iterating 2 markers one behind each other to first to find the required user
 		prev = head[id];			                                 //	second to follow the first to join the next node to the previous one											
+=======
+	void unfriend(int id,String fr_name)
+	{
+		node ptr,prev;
+		prev = head[id];
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		ptr = head[id].next;
 		
 		while(ptr!=null)
@@ -353,7 +421,11 @@ class connection
 	{
 		node ptr1,ptr2;
 		int compare,flag=0;
+<<<<<<< HEAD
 		ptr1 = head[x].next;   				//starting from a node just after the head as we don't need to compare the head
+=======
+		ptr1 = head[x].next;   //starting from a node just after the head as we don't need to compare the head
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		ptr2 = head[y].next;
 		
 		while(ptr1!=null && ptr2!=null)
@@ -401,10 +473,17 @@ class connection
 		Date currentdate=java.util.Calendar.getInstance().getTime();  //take current date
 		
 		
+<<<<<<< HEAD
 		SimpleDateFormat sdf=new SimpleDateFormat("MM");			//we need month only
 		SimpleDateFormat sdf2=new SimpleDateFormat("dd");
 		String b_month1=null;										//friend's bday month
 		String b_month2=null;										//current bday month
+=======
+		SimpleDateFormat sdf=new SimpleDateFormat("MM");		//we need month only
+		SimpleDateFormat sdf2=new SimpleDateFormat("dd");
+		String b_month1=null;									//friend's bday month
+		String b_month2=null;									//current bday month
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		b_month2=sdf.format(currentdate);
 		String b_date1=sdf2.format(currentdate);
 		String b_date2=null;
@@ -416,7 +495,11 @@ class connection
 			b_month1=sdf.format(ptr.dob);
 			b_date2=sdf2.format(ptr.dob);
 			int frnd_b_date=Integer.parseInt(b_date2);
+<<<<<<< HEAD
 			if(b_month1.equals(b_month2)&&today_date<=frnd_b_date)                 //comparing whether the current users bday is in the current month after the current date 
+=======
+			if(b_month1.equals(b_month2)&&today_date<=frnd_b_date)
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 			{
 				SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM-yyyy");
 				String friend_bday=sdf1.format(ptr.dob);
@@ -430,7 +513,11 @@ class connection
 	{
 
 		String s="";
+<<<<<<< HEAD
 		System.out.println("\nHere are some common status for your help!");          //giving some possible status options
+=======
+		System.out.println("\nHere are some common status for your help!");
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		System.out.println("1.Available");
 		System.out.println("2.Busy");	
 		System.out.println("3.At work");	
@@ -467,7 +554,11 @@ class connection
 			
 		}
 		node ptr;
+<<<<<<< HEAD
 		for(int i=0;i<head_count;i++)                         //updating the newly added status in each node of the person's friends as well 
+=======
+		for(int i=0;i<head_count;i++)
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 		{
 			if(head[i]!=head[login_id])
 			{
@@ -521,8 +612,15 @@ class connection
 		else
 		{
 			
+<<<<<<< HEAD
 			insert_sorted(login_id,friend_id);     //adding the user to current users and added user's friend list
 			insert_sorted(friend_id,login_id);     
+=======
+//			insert(login_id,friend_id);     //add edge u,v
+//			insert(friend_id,login_id);     //add edge v,u
+			insert_sorted(login_id,friend_id);     //add edge u,v
+			insert_sorted(friend_id,login_id);     //add edge v,u
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 			System.out.println("\nyou are successfully connected to "+head[friend_id].uname);
 		}
 		
@@ -559,11 +657,19 @@ class connection
 			while(ptr.next!=null)
 			{
 				int comp = head[y].uname.compareTo(ptr.uname);
+<<<<<<< HEAD
 				if(comp<0)                                   // then the to be inserted name is smaller than pointed node 
 				{											//so the node has to be inserted before ptr
 					temp.next = ptr;
 					prev.next = temp;
 					break;    								//break form the loop as the node has been added		
+=======
+				if(comp<0)                                  //then the to be inserted name is smaller than pointed node 
+				{
+					temp.next = ptr;
+					prev.next = temp;
+					break;    //break form the loop as the node has been added		
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7
 				}
 				
 				prev = ptr;
@@ -1453,4 +1559,9 @@ Enter your choice
 
 3
 
+<<<<<<< HEAD
  */
+=======
+ */
+    
+>>>>>>> b5f31cff84f37ac3021727325c937bddce8d7db7

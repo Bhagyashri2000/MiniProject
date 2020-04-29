@@ -418,7 +418,7 @@ class connection
 			{
 				SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM-yyyy");
 				String friend_bday=sdf1.format(ptr.dob);
-				System.out.println(ptr.uname + "  is having birthday in this month at "+friend_bday);
+				System.out.println("\n"+ptr.uname + "  is having birthday in this month at "+friend_bday);
 			}
 			ptr=ptr.next;
 		}
@@ -498,7 +498,7 @@ class connection
 	{
 		System.out.println("");
 		display_list(login_id);
-		System.out.println("Enter the friend name with whom you want to connect");
+		System.out.println("\nEnter the friend name with whom you want to connect");
 		String name=sc.nextLine();
 		int flag=0;
 		int friend_id=0;
@@ -523,7 +523,7 @@ class connection
 //			insert(friend_id,login_id);     //add edge v,u
 			insert_sorted(login_id,friend_id);     //add edge u,v
 			insert_sorted(friend_id,login_id);     //add edge v,u
-			System.out.println("you are successfully connected to "+head[friend_id].uname);
+			System.out.println("\nyou are successfully connected to "+head[friend_id].uname);
 		}
 		
 	}
@@ -600,15 +600,22 @@ public class friend_circle
 		
 		do
 		{
-			System.out.println("\n________________________");
-			System.out.println("\n\t1.Sign-Up\t\t");
-			System.out.println("\t2.Login   \t\t");
-			System.out.println("________________________");
+			System.out.print("\n O\t\t\t O\n");
+		    System.out.print("/|\\---------------------/|\\\n");
+		    System.out.print("/ \\\t\t\t/ \\\n");
+			System.out.print(" |\t\t\t |\n");
+			System.out.print(" |\tConnect_Pal\t |\n");
+			System.out.print(" |\t\t\t |\n");
+			System.out.print(" |\t1:Sign-Up\t |\n");
+			System.out.print(" |\t2:Login\t\t |\n");
+			System.out.print(" |\t\t\t |\n");
+			System.out.print(" O\t\t\t O\n");
+			System.out.print("/|\\---------------------/|\\\n");
+			System.out.print("/ \\\t\t\t/ \\\n");
 			System.out.println("3.Close");
 			System.out.println("\nEnter your choice ");
 			System.out.println();
 			choice=sc.nextInt();
-			//sc.nextLine();
 			
 			switch(choice)
 			{
@@ -629,4 +636,822 @@ public class friend_circle
 		
 	}
 }
+/*
+ * 
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
 
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Apurva Basapure
+enter your birth year
+2000
+enter your birth month
+8
+enter your birth date
+15
+Enter your password
+apurva
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Bhagyashri Sangtani
+enter your birth year
+2000
+enter your birth month
+10
+enter your birth date
+5
+Enter your password
+bhagyashri
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Vaibhavi Aher
+enter your birth year
+2000
+enter your birth month
+2
+enter your birth date
+8
+Enter your password
+vaibhavi
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Deepika Padukone
+enter your birth year
+1987
+enter your birth month
+4
+enter your birth date
+29
+Enter your password
+deeoika
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Priyanka Chopra
+enter your birth year
+1998
+enter your birth month
+4
+enter your birth date
+30
+Enter your password
+priyanka
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+2
+
+Enter your User Name 
+Vaibhavi Aher
+Enter your ID password 
+vaibhavi
+
+!!LOGIN SUCCESSFULL!!
+
+		YOUR PROFILE
+________________________________________
+
+		 Vaibhavi Aher 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 08-02-2000
+
+_________________________________________
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 1
+
+Apurva Basapure
+Bhagyashri Sangtani
+Deepika Padukone
+Priyanka Chopra
+
+Enter the friend name with whom you want to connect
+Apurva Basapure
+
+you are successfully connected to Apurva Basapure
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 1
+
+Bhagyashri Sangtani
+Deepika Padukone
+Priyanka Chopra
+
+Enter the friend name with whom you want to connect
+Bhagyashri Sangtani
+
+you are successfully connected to Bhagyashri Sangtani
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 2
+Enter the username you want to search: Deepika Padukone
+________________________________________
+
+		 Deepika Padukone 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 29-04-1987
+
+_________________________________________
+
+
+Menu: 
+1.Friend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 1
+
+
+Menu: 
+1.Unfriend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 3
+
+		YOUR PROFILE
+________________________________________
+
+		 Vaibhavi Aher 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 08-02-2000
+
+_________________________________________
+
+	#_Your Following_#
+
+Apurva Basapure
+Status: Hey There! I am using Connect-Pal.
+
+
+Bhagyashri Sangtani
+Status: Hey There! I am using Connect-Pal.
+
+
+Deepika Padukone
+Status: Hey There! I am using Connect-Pal.
+
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 3
+
+Here are some common status for your help!
+1.Available
+2.Busy
+3.At work
+4.Sleeping
+5.Type your own status
+3
+Status Updated to :At work
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 2
+Enter the username you want to search: Priyanka Chopra
+________________________________________
+
+		 Priyanka Chopra 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 30-04-1998
+
+_________________________________________
+
+
+Menu: 
+1.Friend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 1
+
+
+Menu: 
+1.Unfriend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 3
+
+		YOUR PROFILE
+________________________________________
+
+		 Vaibhavi Aher 
+
+Status: At work
+
+Date Of Birth: 08-02-2000
+
+_________________________________________
+
+	#_Your Following_#
+
+Apurva Basapure
+Status: Hey There! I am using Connect-Pal.
+
+
+Bhagyashri Sangtani
+Status: Hey There! I am using Connect-Pal.
+
+
+Deepika Padukone
+Status: Hey There! I am using Connect-Pal.
+
+
+Priyanka Chopra
+Status: Hey There! I am using Connect-Pal.
+
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 4
+
+Deepika Padukone  is having birthday in this month at 29-04-1987
+
+Priyanka Chopra  is having birthday in this month at 30-04-1998
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 5
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+2
+
+Enter your User Name 
+a
+Enter your ID password 
+a
+There is no such account exist with this name
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Ranveer Singh
+enter your birth year
+2003
+enter your birth month
+5
+enter your birth date
+22
+Enter your password
+ranveer
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+2
+
+Enter your User Name 
+Deepika Padukone
+Enter your ID password 
+deeoika
+
+!!LOGIN SUCCESSFULL!!
+
+
+!!Connect_pal wishes you very happy and healthy birthday!!
+
+		YOUR PROFILE
+________________________________________
+
+		 Deepika Padukone 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 29-04-1987
+
+_________________________________________
+
+	#_Your Following_#
+
+Vaibhavi Aher
+Status: At work
+
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 1
+
+Apurva Basapure
+Bhagyashri Sangtani
+Priyanka Chopra
+Ranveer Singh
+
+Enter the friend name with whom you want to connect
+Ranveer Singh
+
+you are successfully connected to Ranveer Singh
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 1
+
+Apurva Basapure
+Bhagyashri Sangtani
+Priyanka Chopra
+
+Enter the friend name with whom you want to connect
+Priyanka Chopra
+
+you are successfully connected to Priyanka Chopra
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 3
+
+Here are some common status for your help!
+1.Available
+2.Busy
+3.At work
+4.Sleeping
+5.Type your own status
+5
+Enter your updated status
+Hello Everyone
+Status Updated to :Hello Everyone
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 2
+Enter the username you want to search: Vaibhavi Aher
+________________________________________
+
+		 Vaibhavi Aher 
+
+Status: At work
+
+Date Of Birth: 08-02-2000
+
+_________________________________________
+
+
+Menu: 
+1.Unfriend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 1
+
+
+Menu: 
+1.Friend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 3
+
+		YOUR PROFILE
+________________________________________
+
+		 Deepika Padukone 
+
+Status: Hello Everyone
+
+Date Of Birth: 29-04-1987
+
+_________________________________________
+
+	#_Your Following_#
+
+Priyanka Chopra
+Status: Hey There! I am using Connect-Pal.
+
+
+Ranveer Singh
+Status: Hey There! I am using Connect-Pal.
+
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 4
+
+Priyanka Chopra  is having birthday in this month at 30-04-1998
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 5
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+2
+
+Enter your User Name 
+Bhagyashri Sangtani
+Enter your ID password 
+bhagyashri
+
+!!LOGIN SUCCESSFULL!!
+
+		YOUR PROFILE
+________________________________________
+
+		 Bhagyashri Sangtani 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 05-10-2000
+
+_________________________________________
+
+	#_Your Following_#
+
+Vaibhavi Aher
+Status: At work
+
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 1
+
+Apurva Basapure
+Deepika Padukone
+Priyanka Chopra
+Ranveer Singh
+
+Enter the friend name with whom you want to connect
+Apurva Basapure
+
+you are successfully connected to Apurva Basapure
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 1
+
+Deepika Padukone
+Priyanka Chopra
+Ranveer Singh
+
+Enter the friend name with whom you want to connect
+Deepika Padukone
+
+you are successfully connected to Deepika Padukone
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 2
+Enter the username you want to search: Vaibhavi Aher
+________________________________________
+
+		 Vaibhavi Aher 
+
+Status: At work
+
+Date Of Birth: 08-02-2000
+
+_________________________________________
+
+
+Menu: 
+1.Unfriend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 2
+Apurva Basapure
+
+
+Menu: 
+1.Unfriend them
+2.Display Common Friends
+3.Back to your profile
+Enter your choice: 3
+
+		YOUR PROFILE
+________________________________________
+
+		 Bhagyashri Sangtani 
+
+Status: Hey There! I am using Connect-Pal.
+
+Date Of Birth: 05-10-2000
+
+_________________________________________
+
+	#_Your Following_#
+
+Apurva Basapure
+Status: Hey There! I am using Connect-Pal.
+
+
+Deepika Padukone
+Status: Hello Everyone
+
+
+Vaibhavi Aher
+Status: At work
+
+
+
+1.Add Friends
+2.Search a person
+3.Update Status
+4.Find friends who have birthday in this month
+5.Log-Out
+Enter your choice 5
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+1
+
+Hey! Let's Create your account!!
+
+Enter your User Name 
+Deepika Padukone
+The entered user name already exist!!Try to have some different user name
+
+Enter your User Name 
+Tina
+enter your birth year
+2004
+enter your birth month
+7
+enter your birth date
+5
+Enter your password
+tina
+
+!!Account created successfully!!
+
+ O   	                 O
+/|\---------------------/|\
+/ \                     / \
+ |	                 |
+ |	Connect_Pal      |
+ |		         |
+ |       1:Sign-Up       |
+ |       2:Login         |
+ |	                 |
+ O	                 O
+/|\---------------------/|\
+/ \	                / \
+3.Close
+
+Enter your choice 
+
+3
+
+ */
+    
